@@ -4,6 +4,8 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { config } from '../env/config';
 import {ConfigModule} from "@nestjs/config";
+import { EmployeModule } from './employe/employe.module';
+import {Employe} from "./employe/entities/employe.entity";
 
 
 @Module({
@@ -16,9 +18,10 @@ import {ConfigModule} from "@nestjs/config";
       username: config.database.username,
       password: config.database.password,
       database: config.database.database,
-      entities: [],
+      entities: [Employe],
       extra: config.database.options,
     }),
+    EmployeModule,
   ],
   controllers: [AppController],
   providers: [AppService],
